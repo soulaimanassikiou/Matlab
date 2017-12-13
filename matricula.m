@@ -1,4 +1,4 @@
-%% Carga de la imgen %%andreu
+%% Carga de la imgen %%
 clear all; clc; close all;
 [fichero,p1]=uigetfile(('*.bmp;*.pcx;*.tif;*.jpg'),'Seleccione imagen para detectar matricula');
 s1=strcat(p1,fichero); [img, map]=imread(s1);
