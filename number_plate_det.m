@@ -18,13 +18,13 @@ if size(picture,3)==3
 end
 
 
-figure, imshow(picture);title('Pulsar cuatro veces sobre las esquinas de la matr�cula elegidas','FontSize',10,'Color',[0,0,1]); %Muestra la imagen elegida
-[x,y]=ginput(4); input_points=[x y];    %Define interactivamente las coordenadas de entrada seleccionando 4 puntos en la imagen
-
-base_points=[65 16;427 16;427 97;65 97];    %Establecemos unas dimensiones predefinidas de escalado predefinidas para la imagen resultante
-t_carplate=cp2tform(input_points,base_points,'projective'); %Crea la estructura de la transformaci�n proyectiva
-picture=imtransform(picture,t_carplate);   %Se aplica la transformada proyectiva para enderezar la matr�cula
-figure,imshow(picture);title('Transformaci�n proyectiva de la imagen seleccionada','FontSize',10,'Color',[0,0,1]); %Lee la imagen base de referencia
+% figure, imshow(picture);title('Pulsar cuatro veces sobre las esquinas de la matr�cula elegidas','FontSize',10,'Color',[0,0,1]); %Muestra la imagen elegida
+% [x,y]=ginput(4); input_points=[x y];    %Define interactivamente las coordenadas de entrada seleccionando 4 puntos en la imagen
+% 
+% base_points=[65 16;427 16;427 97;65 97];    %Establecemos unas dimensiones predefinidas de escalado predefinidas para la imagen resultante
+% t_carplate=cp2tform(input_points,base_points,'projective'); %Crea la estructura de la transformaci�n proyectiva
+% picture=imtransform(picture,t_carplate);   %Se aplica la transformada proyectiva para enderezar la matr�cula
+% figure,imshow(picture);title('Transformaci�n proyectiva de la imagen seleccionada','FontSize',10,'Color',[0,0,1]); %Lee la imagen base de referencia
 
 %% we call the function that will crop the image for getting the plate of the vehicle
 picture = ZoomPlate(picture);
