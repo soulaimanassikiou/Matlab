@@ -1,3 +1,7 @@
+
+
+
+
 % This code implemented license plate detection using morphological 
 % operators and loosely follows the approach presented by:
 % 1. Farhad Faradji, Amir Hossein Rezaie, Majid Ziaratban ”a morphological
@@ -16,14 +20,14 @@ clc
 clear all
 close all
 %% Read Image
-Im    = imread('.\DataBase\3.jpg');
+Im    = imread('.\imatges reals\r3.png');
 I     = im2double(rgb2gray(Im));
 % figure();imshow(I)
 %% Sobel Masking 
 SM    = [-1 0 1;-2 0 2;-1 0 1];         % Sobel Vertical Mask
 IS    = imfilter(I,SM,'replicate');     % Filter Image Using Sobel Mask
 IS    = IS.^2;                          % Consider Just Value of Edges & Fray Weak Edges
-% figure();imshow(IS)
+ figure();imshow(IS)
 %% Normalization
 IS    = (IS-min(IS(:)))/(max(IS(:))-min(IS(:))); % Normalization
 % figure();imshow(IS)
@@ -49,7 +53,7 @@ Msk(PR,:) = 1;                          % Mask
 MB    = Msk.*IS;                        % Candidate Plate (Edge Image)
  figure();imshow(MB)
 %% Morphology (Dilation - Vertical)
-Dy    = strel('rectangle',[80,4]);      % Vertical Extension
+Dy    = strel('rectangle',[80,40]);      % Vertical Extension
 MBy   = imdilate(MB,Dy);                % By Dilation
 MBy   = imfill(MBy,'holes');            % Fill Holes
 % figure();imshow(MBx)
@@ -97,4 +101,11 @@ hold on
 rectangle('Position',[min(jc),min(jr),max(jc)-min(jc),...
 max(jr)-min(jr)],'LineWidth',4,'EdgeColor','r')
 hold off
-
+figure;
+corner1 = min(jc)-25;
+corner2 = min(jr)-25;
+corner3 = (max(jc)-min(jc))+50;
+corner4 = (max(jr)-min(jr))+50;
+axis;
+XXX = imcrop(Im,[ corner1, corner2, corner3, corner4 ]);
+imshow(getTransformedPlate(XXX));
